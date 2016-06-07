@@ -1,0 +1,96 @@
+<%--
+    Document   : header
+    Created on : May 06, 2016
+    Author     : GaBi
+--%>
+
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<link rel="stylesheet" href="css/enjoycooking.css"type="text/css" />
+		<link rel="shortcut icon" href="img/favicon.ico" />		
+        <title>Enjoy Cooking</title>
+    </head>
+    <body>
+        <div id="main">
+            <div id="header">
+                <div id="widgetBar">
+
+                    <div class="headerWidget">
+                       [ en | ru | uk ]
+                    </div>
+
+                    <div class="headerWidget">
+
+                       <%-- tests for the following:
+                            * if recipe cart exists and is not empty
+                            * if the servlet path does not contain '/recipe'
+                            * if the requested view is not recipe cart
+                            --%>
+
+                        <c:if test="${!empty rCart && rCart.numberOfIngredients != 0 &&
+
+                                      !fn:contains(pageContext.request.servletPath,'/recipe') &&
+                                      requestScope['javax.servlet.forward.servlet_path'] ne '/recipe' &&
+
+                                      recipeFailureFlag ne true}">
+
+                      <a href="<c:url value='/bonAppetit'/>" class="bubble">
+                        mix salad &#x279f;
+                      </a>
+                    </c:if>
+                  </div>
+
+                  <div class="headerWidget" id="viewRecipe">
+					
+					<img src="img/recipeCart.jpg" alt="recipe cart icon" id="cart">
+					
+                  <%-- If 'numberOfIngredients' property doesn't exist, or if number of items
+                       in recipe is 0, output '0', otherwise output 'numberOfIngredients' --%>
+                       
+                    <span class="horizontalMargin">
+                      <c:choose>
+                        <c:when test="${rCart.numberOfIngredients == null}">
+                          0
+                        </c:when>
+                        <c:otherwise>
+                          ${rCart.numberOfIngredients}
+                        </c:otherwise>
+                      </c:choose>
+
+                  <%-- Handle singular/plural forms of 'ingredient' --%>
+                      <c:choose>
+                        <c:when test="${rCart.numberOfIngredients == 1}">
+                          ingredient
+                        </c:when>
+                        <c:otherwise>
+                          ingredients
+                        </c:otherwise>
+                      </c:choose>
+                    </span>
+
+                    <c:if test="${!empty rCart && rCart.numberOfIngredients != 0 &&
+
+                                  !fn:contains(pageContext.request.servletPath,'/recipe') &&
+                                  requestScope['javax.servlet.forward.servlet_path'] ne '/recipe'}">
+
+                      <a href="<c:url value='viewRecipe'/>" class="bubble">
+                          view recipe
+                      </a>
+                    </c:if>
+                </div>
+                </div>
+
+
+            <a href="<c:url value='/'/>">
+        		<img src="img/logo.png" id="logo" alt="Enjoy Cooking logo">
+    		</a>
+
+    		<p id="logoText">Enjoy Cooking!</p>
+            </div>

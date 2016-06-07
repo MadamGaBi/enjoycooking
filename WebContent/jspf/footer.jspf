@@ -1,0 +1,18 @@
+<%--
+    Document   : footer
+    Created on : May 06, 2016
+    Author     : GaBi
+--%>
+
+
+            <div id="footer">
+                <br>
+                <hr>
+                <p id="footerText" class="reallySmallText">
+                    <a href="#">Privacy Policy</a>
+                    &nbsp;::&nbsp;&copy;&nbsp;
+                    2016 Enjoy Cooking made by <a href="#">GaBi</a> </p>
+            </div>
+        </div>
+    </body>
+</html>

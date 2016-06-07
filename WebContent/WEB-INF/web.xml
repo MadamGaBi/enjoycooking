@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>EnjoyCooking</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+
+<resource-ref>
+    <description>Connects to database for EnjoyCooking application</description>
+    <res-ref-name>jdbc/EnjoyCooking</res-ref-name>
+    <res-type>javax.sql.DataSource</res-type>
+    <res-auth>Container</res-auth>
+    <mapped-name>jdbc/EnjoyCooking</mapped-name>
+</resource-ref>
+
+  <jsp-config>
+    <jsp-property-group>
+        <description>header and footer settings</description>
+        <url-pattern>/index.jsp</url-pattern>
+        <url-pattern>/view/*</url-pattern>
+        <include-prelude>/jspf/header.jspf</include-prelude>
+        <include-coda>/jspf/footer.jspf</include-coda>
+    </jsp-property-group>
+</jsp-config>
+
+<context-param>
+    <description>The relative path to product images</description>
+    <param-name>vegetablesImagePath</param-name>
+    <param-value>img/vegetables/</param-value>
+</context-param>
+<context-param>
+    <description>The relative path to category images</description>
+    <param-name>classificationImagePath</param-name>
+    <param-value>img/classification/</param-value>
+</context-param>
+
+</web-app>
